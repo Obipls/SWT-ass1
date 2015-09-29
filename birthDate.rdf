@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:wdrs="http://www.w3.org/2007/05/powder-s#"
+	xmlns:ns4="http://www.w3.org/ns/prov#"
+	xmlns:ns5="http://open.vocab.org/terms/" >
+  <rdf:Description rdf:about="http://dbpedia.org/ontology/">
+    <ns5:defines rdf:resource="http://dbpedia.org/ontology/birthDate" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/ontology/birthDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property" />
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty" />
+    <owl:equivalentProperty rdf:resource="http://schema.org/birthDate" />
+    <owl:equivalentProperty rdf:resource="http://www.wikidata.org/entity/P569" />
+    <owl:sameAs rdf:resource="http://dbpedia.org/ontology/birthDate" />
+    <rdfs:label xml:lang="el">ημερομηνία_γέννησης</rdfs:label>
+    <rdfs:label xml:lang="ja">生年月日</rdfs:label>
+    <rdfs:label xml:lang="de">Geburtsdatum</rdfs:label>
+    <rdfs:label xml:lang="fr">date de naissance</rdfs:label>
+    <rdfs:label xml:lang="bn">জন্মদিন</rdfs:label>
+    <rdfs:label xml:lang="en">birth date</rdfs:label>
+    <rdfs:label xml:lang="ga">dáta breithe</rdfs:label>
+    <rdfs:label xml:lang="pl">data urodzenia</rdfs:label>
+    <rdfs:label xml:lang="ca">data de naixement</rdfs:label>
+    <rdfs:label xml:lang="nl">geboortedatum</rdfs:label>
+    <rdfs:domain rdf:resource="http://dbpedia.org/ontology/Person" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
+    <rdfs:isDefinedBy rdf:resource="http://dbpedia.org/ontology/" />
+    <wdrs:describedby rdf:resource="http://dbpedia.org/ontology/data/definitions.ttl" />
+    <ns4:wasDerivedFrom rdf:resource="http://mappings.dbpedia.org/index.php/OntologyProperty:birthDate" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/ontology/data/definitions.ttl">
+    <ns5:describes rdf:resource="http://dbpedia.org/ontology/birthDate" />
+  </rdf:Description>
+</rdf:RDF>
