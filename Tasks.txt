@@ -1,0 +1,23 @@
+Tasks
+
+Step 1:
+Find Dutch DBpedia pages which have a English DBpedia page (sameAs property)
+
+Step 2:
+Extract properties from DBpedia pages
+
+Step 3:
+Find corresponding values between languages
+
+Step 4:
+Enrich Dutch property values with values from English property
+
+
+Mart:
+Dive in to SPARQL to get all the data from DBpedia pages
+
+Olivier:
+Search for files in the DBpedia dump
+
+Charles:
+Try to find owl to use with Protege
