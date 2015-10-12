@@ -10,3 +10,4 @@ infobox-properties_nl.nq
 result
 - <Dutch page> <English ontology (+ type)> <value> .
 	<value> <sameAs> <Dutch property>
+
