@@ -1,11 +1,12 @@
  infobox-property-definitions
 - maybe later
 
-mappingbased-properties
-- <English page> <place in ontology> <value>
+mappingbased-properties_nl.nq
+- <Dutch page> <place in ontology> <value>
 
-infobox-properties_nl
-- <Dutch URL> <property name + value + type> <location on page>
+infobox-properties_nl.nq
+- <Dutch page> <property name + value + type> <location on page>
 
 result
-- <Dutch URL>< English ontology + value +type> <location on page>
+- <Dutch page> <English ontology (+ type)> <value> .
+	<value> <sameAs> <Dutch property>
