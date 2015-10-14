@@ -28,8 +28,9 @@ def main():
 					#	propertyList.append(value)
 					propertySet.add(value)
 	#print(propertyList)
-	print(propertySet)
+	for triple in propertySet:
+		print(triple)
 
-	
+
 if __name__ == '__main__':
 	main()
