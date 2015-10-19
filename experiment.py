@@ -1,6 +1,6 @@
 #usr/bin/python3.4
 
-#from progressbar import ProgressBar
+from progressbar import ProgressBar
 from collections import defaultdict
 
 def main():
@@ -11,11 +11,11 @@ def main():
 	englishlines = defaultdict(list)
 
 	for line in dutchfile:
-		splitline=line.split()
+		splitline = line.split()
 		dutchlines[splitline[0]].append((splitline[1],splitline[2]))
 		
 	for line in englishfile:
-		splitline=line.split()
+		splitline = line.split()
 		englishlines[splitline[0]].append((splitline[1],splitline[2]))
 			
 	dutchfile.close()
@@ -23,16 +23,17 @@ def main():
 
 	propertyList = []
 	propertySet = set()
-#	pbar = ProgressBar()
-
-	for keyD, linelistD in dutchlines.items(): #pbar(dutchlines):
+	pbar = ProgressBar()
+	
+	for keyD, linelistD in pbar(dutchlines.items()): #pbar(dutchlines):
 		for keyE,linelistE in englishlines.items():
 			for tuplesD in dutchlines.get(keyD):
 				for tuplesE in englishlines.get(keyE):
-					print(tuplesE)
-			
-				value = '{:<60} dbpedia-owl:sameAs {}'.format()
-				propertySet.add(value)
+					if tuplesD[1] == tuplesE[1]:
+						#print(tuplesD[0], 'dbpedia-owl:sameAs', tuplesE[0])
+						value = tuplesD[0] + ' dbpedia-owl:sameAs ' + tuplesE[0]
+						#value = '{:<60} dbpedia-owl:sameAs {}'.format(tuplesD, tuplesE)
+						propertySet.add(value)
 
 	for triple in propertySet:
 		print(triple)

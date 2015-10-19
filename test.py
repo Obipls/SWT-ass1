@@ -1,6 +1,7 @@
 #usr/bin/python3.4
 
 from progressbar import ProgressBar
+from collections import defaultdict
 
 def main():
 	dutchfile = open('valuelookup.txt', 'r')
@@ -14,6 +15,9 @@ def main():
 	for line in englishfile:
 		englishlines.append(line.strip().split())
 
+	dutchfile.close()
+	englishfile.close()
+
 	propertyList = []
 	propertySet = set()
 	pbar = ProgressBar()
@@ -22,11 +26,11 @@ def main():
 			if linelistD[0] == linelistE[0]:
 				if linelistD[2] == linelistE[2]:
 					value = '{:<60} dbpedia-owl:sameAs {}'.format(linelistD[1], linelistE[1])
-					#print(value)
+					print(value)
 					#print('{:<60} dbpedia-owl:sameAs {}'.format(linelistD[1], linelistE[1]))
 					#if value not in propertyList:
 					#	propertyList.append(value)
-					propertySet.add(value)
+					#propertySet.add(value)
 	#print(propertyList)
 	for triple in propertySet:
 		print(triple)
