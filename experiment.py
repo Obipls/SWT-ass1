@@ -24,16 +24,19 @@ def main():
 	propertyList = []
 	propertySet = set()
 	pbar = ProgressBar()
-	
-	for keyD, linelistD in pbar(dutchlines.items()): #pbar(dutchlines):
+
+	for keyD, linelistD in pbar(dutchlines.items()):
 		for keyE,linelistE in englishlines.items():
-			for tuplesD in dutchlines.get(keyD):
-				for tuplesE in englishlines.get(keyE):
-					if tuplesD[1] == tuplesE[1]:
-						#print(tuplesD[0], 'dbpedia-owl:sameAs', tuplesE[0])
-						value = tuplesD[0] + ' dbpedia-owl:sameAs ' + tuplesE[0]
-						#value = '{:<60} dbpedia-owl:sameAs {}'.format(tuplesD, tuplesE)
-						propertySet.add(value)
+			if keyD == keyE:
+				#print(dutchlines[keyD])
+				for tuplesD in dutchlines[keyD]:
+					#print(keyD, tuplesD)
+					for tuplesE in englishlines[keyE]:
+						if tuplesD[1] == tuplesE[1]:
+							#print(tuplesD[0], 'dbpedia-owl:sameAs', tuplesE[0])
+							value = tuplesD[0] + ' dbpedia-owl:sameAs ' + tuplesE[0]
+							#value = '{:<60} dbpedia-owl:sameAs {}'.format(tuplesD, tuplesE)
+							propertySet.add(value)
 
 	for triple in propertySet:
 		print(triple)
