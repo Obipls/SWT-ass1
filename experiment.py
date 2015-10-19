@@ -6,22 +6,34 @@ from collections import defaultdict
 def main():
 	dutchfile = open('valuelookup.txt', 'r')
 	englishfile = open('valuereference.txt', 'r')
+	infoboxtypefile = open('instance-types_nl.nq', 'r')
 
 	dutchlines = defaultdict(list)
 	englishlines = defaultdict(list)
 
-	for line in dutchfile:
-		splitline = line.split()
-		dutchlines[splitline[0]].append((splitline[1],splitline[2]))
-		
-	for line in englishfile:
-		splitline = line.split()
-		englishlines[splitline[0]].append((splitline[1],splitline[2]))
+	for dutchline in dutchfile:
+		splitlineDut = dutchline.split()
+		for line in infoboxtypefile:
+			typeline = line.split()
+			if typeline[0] == splitlineDut[0]:
+				dutchlines[splitlineDut[0] + ', ' + typeline[2]].append((splitlineDut[1],splitlineDut[2]))
+	
+	infoboxtypefile.close()
+	infoboxtypefile = open('instance-types_nl.nq', 'r')
+	for engline in englishfile:
+		splitlineEng = engline.split()
+		for line in infoboxtypefile:
+			typeline = line.split()
+			if typeline[0] == splitlineEng[0]:
+				englishlines[splitlineEng[0] + ', ' + typeline[2]].append((splitlineEng[1],splitlineEng[2]))
 			
 	dutchfile.close()
 	englishfile.close()
+	infoboxtypefile.close()
 
-	propertyList = []
+	print(dutchlines)
+	print(englishlines)
+
 	propertySet = set()
 	pbar = ProgressBar()
 
