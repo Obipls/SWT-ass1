@@ -9,6 +9,7 @@ def main(argv):
 	englishfile = open('valuereference.txt', 'r')
 	infoboxtypefile = open('instance-types_nl.nq', 'r')
 	resultfile = open(argv[1], 'a')
+	print("Opening files: complete!")
 
 	dutchlines = defaultdict(list)
 	englishlines = defaultdict(list)
@@ -31,6 +32,7 @@ def main(argv):
 		if splitlineEng[0] in infoboxtypelines.keys():
 			englishlines[splitlineEng[0] + ' type:' + str(infoboxtypelines[splitlineEng[0]])].append((splitlineEng[1], splitlineEng[2]))	
 	englishfile.close()
+	print("Creating dictionaries: complete!")
 
 	propertySet = set()
 	pbar = ProgressBar()
@@ -41,16 +43,16 @@ def main(argv):
 				#print(dutchlines[keyD])
 				for tuplesD in dutchlines[keyD]:
 					#print(keyD, tuplesD)
-					for tuplesE in englishlines[keyE]:
+					for tuplesE in englishlines[keyD]:
 						if tuplesD[1] == tuplesE[1]:
 							#print(tuplesD[0], 'dbpedia-owl:sameAs', tuplesE[0])
 							#value = tuplesD[0] + ' dbpedia-owl:sameAs ' + tuplesE[0]
 							#print(str(keyD).split()[1])
-							value = '{:<30} {:<60} dbpedia-owl:sameAs {}'.format(str(keyD).split()[1], tuplesD[0], tuplesE[0])
+							value = '{:<60} dbpedia-owl:sameAs {:<60} {}'.format(tuplesD[0], tuplesE[0], str(keyD).split()[1])
 							propertySet.add(value)
 
 	for triple in propertySet:
-		resultfile.write(triple)
+		resultfile.write(triple + "\n")
 		#print(triple)
 	
 
