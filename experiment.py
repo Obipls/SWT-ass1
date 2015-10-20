@@ -10,34 +10,29 @@ def main():
 
 	dutchlines = defaultdict(list)
 	englishlines = defaultdict(list)
+	infoboxtypelines = defaultdict()
+
+	for line in infoboxtypefile:
+		typesplitline = line.split()
+		infoboxtypelines[typesplitline[0]] = str(typesplitline[2][29:-1])
+	infoboxtypefile.close()
 
 	for dutchline in dutchfile:
 		splitlineDut = dutchline.split()
-		for i,line in enumerate(infoboxtypefile):
-			typeline = line.split()
-			print(i,splitlineDut[0],typeline[0])
-			if typeline[0] == splitlineDut[0]:
-				dutchlines[splitlineDut[0] + ', ' + typeline[2]].append((splitlineDut[1],splitlineDut[2]))
+		if splitlineDut[0] in infoboxtypelines.keys():
+			dutchlines[splitlineDut[0] + ' type:' + str(infoboxtypelines[splitlineDut[0]])].append((splitlineDut[1], splitlineDut[2]))
+	dutchfile.close()
+
 	
-	infoboxtypefile.close()
-	infoboxtypefile = open('instance-types_nl.nq', 'r')
 	for engline in englishfile:
 		splitlineEng = engline.split()
-		for line in infoboxtypefile:
-			typeline = line.split()
-			if typeline[0] == splitlineEng[0]:
-				englishlines[splitlineEng[0] + ', ' + typeline[2]].append((splitlineEng[1],splitlineEng[2]))
-			
-	dutchfile.close()
+		if splitlineEng[0] in infoboxtypelines.keys():
+			englishlines[splitlineEng[0] + ' type:' + str(infoboxtypelines[splitlineEng[0]])].append((splitlineEng[1], splitlineEng[2]))	
 	englishfile.close()
-	infoboxtypefile.close()
-
-	print(dutchlines)
-	print(englishlines)
 
 	propertySet = set()
 	pbar = ProgressBar()
-
+	
 	for keyD, linelistD in pbar(dutchlines.items()):
 		for keyE,linelistE in englishlines.items():
 			if keyD == keyE:
@@ -53,6 +48,7 @@ def main():
 
 	for triple in propertySet:
 		print(triple)
+	
 
 
 if __name__ == '__main__':
