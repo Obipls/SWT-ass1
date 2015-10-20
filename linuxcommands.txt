@@ -1,0 +1,1 @@
+sed 's + tg' experimentresult.txt  sort -k2  experiment_sorted_on_column2.txt
