@@ -1,5 +1,5 @@
 #usr/bin/python3.4
-
+import time
 from progressbar import ProgressBar
 from collections import defaultdict
 
@@ -13,8 +13,9 @@ def main():
 
 	for dutchline in dutchfile:
 		splitlineDut = dutchline.split()
-		for line in infoboxtypefile:
+		for i,line in enumerate(infoboxtypefile):
 			typeline = line.split()
+			print(i,splitlineDut[0],typeline[0])
 			if typeline[0] == splitlineDut[0]:
 				dutchlines[splitlineDut[0] + ', ' + typeline[2]].append((splitlineDut[1],splitlineDut[2]))
 	
