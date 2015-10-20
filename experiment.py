@@ -24,6 +24,7 @@ def main(argv):
 		if splitlineDut[0] in infoboxtypelines.keys():
 			dutchlines[splitlineDut[0] + ' type:' + str(infoboxtypelines[splitlineDut[0]])].append((splitlineDut[1], splitlineDut[2]))
 	dutchfile.close()
+
 	
 	for engline in englishfile:
 		splitlineEng = engline.split()
