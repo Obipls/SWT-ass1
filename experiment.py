@@ -2,14 +2,14 @@
 
 import sys
 from progressbar import ProgressBar
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 def main(argv):
 	dutchfile = open('valuelookup.txt', 'r')
 	englishfile = open('valuereference.txt', 'r')
 	infoboxtypefile = open('instance-types_nl.nq', 'r')
-	resultfile = open(argv[1], 'a')
-	print("Opening files: complete!")
+	#resultfile = open(argv[1], 'a')
+	print("Opening files: complete!", file=sys.stderr)
 
 	dutchlines = defaultdict(list)
 	englishlines = defaultdict(list)
@@ -32,11 +32,12 @@ def main(argv):
 		if splitlineEng[0] in infoboxtypelines.keys():
 			englishlines[splitlineEng[0] + ' type:' + str(infoboxtypelines[splitlineEng[0]])].append((splitlineEng[1], splitlineEng[2]))	
 	englishfile.close()
-	print("Creating dictionaries: complete!")
+	print("Creating dictionaries: complete!", file=sys.stderr)
 
 	propertySet = set()
+	propertyCounter = Counter()
 	pbar = ProgressBar()
-	
+
 	for keyD in pbar(dutchlines.keys()):
 		for keyE in englishlines.keys():
 			if keyD == keyE:
@@ -49,11 +50,14 @@ def main(argv):
 							#value = tuplesD[0] + ' dbpedia-owl:sameAs ' + tuplesE[0]
 							#print(str(keyD).split()[1])
 							value = '{:<60} dbpedia-owl:sameAs {:<60} {}'.format(tuplesD[0], tuplesE[0], str(keyD).split()[1])
-							propertySet.add(value)
+							#propertySet.add(value)
+							propertyCounter.update(value)
 
-	for triple in propertySet:
-		resultfile.write(triple + "\n")
+	#for triple in propertySet:
+	#	resultfile.write(triple + "\n")
 		#print(triple)
+
+	print(propertyCounter)
 	
 
 
