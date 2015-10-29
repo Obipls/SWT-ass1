@@ -33,9 +33,9 @@ def main(argv):
 
 	for value in matchDict.values():
 		if len(value) == 2 and len(value[1]) == 1 and len(value[0]) == 2:
-			triple = '{}	{:<60}	dbpedia-owl:sameAs	{:<60}'.format(value[0][0][28:], value[0][1], value[1][0])
+			triple = '{}	{:<60}	dbpedia-owl:sameAs	{:<60}'.format(value[0][0], value[0][1], value[1][0])
 			matchList.append(triple)
-
+		
 
 	matchCounts = Counter(matchList)
 	for item in matchList:
@@ -43,8 +43,8 @@ def main(argv):
 			pass
 			#del matchCounts[item]
 	propertySet = set(matchCounts)
-	#for triple in propertySet:
-	#	resultfile.write(triple + "\n")
+	for triple in propertySet:
+		resultfile.write(triple + "\n")
 
 
 if __name__ == '__main__':
