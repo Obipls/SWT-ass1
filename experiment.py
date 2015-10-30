@@ -5,8 +5,8 @@ from progressbar import ProgressBar
 from collections import defaultdict, Counter
 
 def main(argv):
-	dutchfile = open('valuelookup.txt', 'r')
-	englishfile = open('valuereference.txt', 'r')
+	dutchfile = open('infobox-properties_nl.nt', 'r')
+	englishfile = open('mappingbased-properties_nl.nt', 'r')
 	infoboxtypefile = open('instance-types_nl.nt', 'r')
 	resultfile = open(argv[1], 'a')
 	print("Opening files: complete!")
@@ -19,11 +19,13 @@ def main(argv):
 		splitlineType = line.split()
 		infoboxDict[splitlineType[0]] = splitlineType[2]
 	infoboxtypefile.close()
+	print("infoboxes ready")
 
 	for dutchline in dutchfile:
 		splitlineDut = dutchline.split()
 		matchDict[splitlineDut[0] + ' ' + splitlineDut[2]].append([infoboxDict.get(splitlineDut[0]), splitlineDut[1]])
 	dutchfile.close()
+	print("Dutch ready")
 
 	for engline in englishfile:
 		splitlineEng = engline.split()
